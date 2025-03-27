@@ -59,14 +59,14 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   Open another new terminal, edit `ROCKET_PORT` in `.env` to `8003`, then execute `cargo run`.
 
 ## Mandatory Checklists (Subscriber)
--   [ ] Clone https://gitlab.com/ichlaffterlalu/bambangshop-receiver to a new repository.
+-   [X] Clone https://gitlab.com/ichlaffterlalu/bambangshop-receiver to a new repository.
 -   **STAGE 1: Implement models and repositories**
-    -   [ ] Commit: `Create Notification model struct.`
-    -   [ ] Commit: `Create SubscriberRequest model struct.`
-    -   [ ] Commit: `Create Notification database and Notification repository struct skeleton.`
-    -   [ ] Commit: `Implement add function in Notification repository.`
-    -   [ ] Commit: `Implement list_all_as_string function in Notification repository.`
-    -   [ ] Write answers of your learning module's "Reflection Subscriber-1" questions in this README.
+    -   [X] Commit: `Create Notification model struct.`
+    -   [X] Commit: `Create SubscriberRequest model struct.`
+    -   [X] Commit: `Create Notification database and Notification repository struct skeleton.`
+    -   [X] Commit: `Implement add function in Notification repository.`
+    -   [X] Commit: `Implement list_all_as_string function in Notification repository.`
+    -   [X] Write answers of your learning module's "Reflection Subscriber-1" questions in this README.
 -   **STAGE 3: Implement services and controllers**
     -   [ ] Commit: `Create Notification service struct skeleton.`
     -   [ ] Commit: `Implement subscribe function in Notification service.`
@@ -85,5 +85,8 @@ This is the place for you to write reflections:
 ### Mandatory (Subscriber) Reflections
 
 #### Reflection Subscriber-1
+1. Pada tutorial ini, kita menggunakan `RwLock<Vec<Notification>>` untuk memungkinkan _multiple thread_ membaca notifikasi secara bersamaan tanpa _blocking_, dengan tetap memastikan hanya satu thread yang dapat menulis pada satu waktu. Hal ini akan meningkatkan performa karena pembacaan lebih sering terjadi dibandingkan penulisan. Jika kita menggunakan `Mutex<Vec<Notification>>`, setiap operasi baca juga akan mengunci seluruh struktur data, yang mana dapat menyebabkan _bottleneck_ dan mengurangi efisiensi dalam lingkungan _multi-threaded_.
+
+2. Rust tidak mengizinkan mutasi langsung pada variabel `static` seperti di Java untuk mencegah isu _race condition_ dalam lingkungan _multi-threaded_. Rust memerlukan mekanisme sinkronisasi seperti `Mutex` atau `RwLock` untuk mengelola mutasi pada variabel `static`, atau menggunakan `lazy_static!` untuk inisialisasi aman. Dengan pendekatan ini, Rust memastikan bahwa akses ke variabel global tetap aman tanpa menyebabkan masalah dalam eksekusi paralel.
 
 #### Reflection Subscriber-2
