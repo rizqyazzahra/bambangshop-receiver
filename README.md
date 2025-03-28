@@ -77,7 +77,7 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [X] Commit: `Implement receive function in Notification controller.`
     -   [X] Commit: `Implement list_messages function in Notification service.`
     -   [X] Commit: `Implement list function in Notification controller.`
-    -   [ ] Write answers of your learning module's "Reflection Subscriber-2" questions in this README.
+    -   [X] Write answers of your learning module's "Reflection Subscriber-2" questions in this README.
 
 ## Your Reflections
 This is the place for you to write reflections:
@@ -90,3 +90,8 @@ This is the place for you to write reflections:
 2. Rust tidak mengizinkan mutasi langsung pada variabel `static` seperti di Java untuk mencegah isu _race condition_ dalam lingkungan _multi-threaded_. Rust memerlukan mekanisme sinkronisasi seperti `Mutex` atau `RwLock` untuk mengelola mutasi pada variabel `static`, atau menggunakan `lazy_static!` untuk inisialisasi aman. Dengan pendekatan ini, Rust memastikan bahwa akses ke variabel global tetap aman tanpa menyebabkan masalah dalam eksekusi paralel.
 
 #### Reflection Subscriber-2
+1. Saya sudah mempelajari sekilas mengenai `src/lib.rs`. Dari yang saya pahami, `src/lib.rs` berfungsi sebagai modul utama proyek yang sedang kita bangun. file ini berisi import crate dan modul, struktur AppConfig, dan logika _error handling_.
+
+2. Observer Pattern mempermudah penambahan `Subscriber` tanpa perlu mengubah kode publisher. Dengan multiple Receiver, setiap subscriber otomatis menerima notifikasi. Namun, jika ada lebih dari satu instance Main app, sinkronisasi state menjadi tantangan. Solusinya adalah menggunakan penyimpanan terpusat seperti database atau message broker agar semua instance berbagi daftar subscriber yang sama.
+
+3. Saya telah mencoba membuat tes sendiri. Fitur ini sangat berguna untuk memastikan endpoint bekerja sesuai ekspektasi tanpa harus menguji secara manual setiap kali ada perubahan. Sementara itu, dokumentasi di Postman dapat membantu tim memahami API dengan lebih mudah, terutama dalam proyek kelompok, karena semua request dan respons sudah tertulis dalam dokumentasi dengan jelas.
